@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--
+      TODO: Find and place proper fonts and fix bottom padding
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:orientation="horizontal">
+
+        <!-- round avatar-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="30dp"
+            app:cardUseCompatPadding="true">
+
+            <ImageView
+                android:id="@+id/image_view_avatar"
+                android:layout_width="@dimen/_42sdp"
+                android:layout_height="@dimen/_42sdp"
+                android:contentDescription="@string/user_avatar" />
+        </androidx.cardview.widget.CardView>
+
+        <!--user name & repository name-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:fontFamily="@font/dejavu_mono"
+                android:text="@string/text_view_user_name_placeholder"
+                android:textColor="#757474"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_view_user_repository"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:fontFamily="@font/dejavu_mono"
+                android:scrollbars="vertical"
+                android:text="@string/text_view_repository_name_placeholder"
+                android:textColor="#606060"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+
+            <!-- by default visibility is gone-->
+            <TextView
+                android:id="@+id/text_view_repository_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/dejavu_mono"
+                android:lines="3"
+                android:scrollbars="vertical"
+                android:text="@string/text_view_repository_description"
+                android:textColor="#606060"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+
+            <!--starts and icons-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_view_repo_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:drawablePadding="8dp"
+                    android:text="@string/language_place_holder"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableStartCompat="@drawable/language_drawable" />
+
+                <TextView
+                    android:id="@+id/text_view_total_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="@string/starts_place_holder"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableStartCompat="@drawable/baseline_grade_24" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

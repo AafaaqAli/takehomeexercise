@@ -5,4 +5,10 @@
     <string name="app_name">Sadapay.exercise</string>
     <string name="app_name_debug">debug.exercise</string>
     <string name="app_name_qa">qa.exercise</string>
+    <string name="user_avatar">User Avatar</string>
+    <string name="text_view_user_name_placeholder">AafaaqAli</string>
+    <string name="text_view_repository_name_placeholder">PopularRepos</string>
+    <string name="text_view_repository_description">This project aims display popular repositories which have most starts, and most active contributors from OpenSource Community.</string>
+    <string name="language_place_holder">Python</string>
+    <string name="starts_place_holder">115</string>
 </resources>
