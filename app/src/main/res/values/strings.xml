@@ -11,4 +11,7 @@
     <string name="text_view_repository_description">This project aims display popular repositories which have most starts, and most active contributors from OpenSource Community.</string>
     <string name="language_place_holder">Python</string>
     <string name="starts_place_holder">115</string>
+    <string name="retry">RETRY</string>
+    <string name="something_went_wrong">Something went wrong..</string>
+    <string name="an_alien_is_probably_blocking_your_signal">An alien is probably blocking your signal.</string>
 </resources>

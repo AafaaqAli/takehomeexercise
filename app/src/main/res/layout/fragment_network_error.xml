@@ -1,21 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.fragments.network_error_fragment.NetworkErrorFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/image_no_network"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_text_view"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_network_error" />
+
+        <LinearLayout
+            android:id="@+id/layout_text_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello Sadapay"
-            android:textSize="@dimen/_30sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_above="@+id/button_retry"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_55sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:text="@string/something_went_wrong"
+                android:textAlignment="center"
+                android:fontFamily="@font/vega_sb_medium"
+                android:textColor="@color/text_color_warm_grey"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vega_sb_medium"
+                android:text="@string/an_alien_is_probably_blocking_your_signal"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_lite_grey"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_retry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_45sdp"
+            android:layout_marginEnd="@dimen/_45sdp"
+            android:layout_marginBottom="@dimen/_55sdp"
+            android:background="@drawable/ripple_retry_background"
+            android:elevation="@dimen/_10sdp"
+            android:text="@string/retry"
+            android:textColor="@color/color_green" />
+    </RelativeLayout>
 </layout>
