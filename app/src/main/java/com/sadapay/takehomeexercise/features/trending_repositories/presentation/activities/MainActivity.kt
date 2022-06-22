@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.presentation.activities
+package com.sadapay.takehomeexercise.features.trending_repositories.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

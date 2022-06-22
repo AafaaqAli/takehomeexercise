@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.presentation.fragments.network_error_fragment
+package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment
 
 import androidx.lifecycle.ViewModel
 

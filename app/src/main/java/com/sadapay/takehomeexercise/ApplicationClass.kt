@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.presentation
+package com.sadapay.takehomeexercise
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

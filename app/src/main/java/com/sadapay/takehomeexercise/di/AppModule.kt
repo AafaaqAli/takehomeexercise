@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.presentation.di
+package com.sadapay.takehomeexercise.di
 
 import dagger.Module
 import dagger.hilt.InstallIn

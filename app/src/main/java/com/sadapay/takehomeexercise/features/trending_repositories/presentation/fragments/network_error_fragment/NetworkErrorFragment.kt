@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.presentation.fragments.network_error_fragment
+package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -47,7 +47,7 @@ class NetworkErrorFragment: Fragment() {
         * TODO: REMOVE AFTER TESTING
         * */
         binding.buttonRetry.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_networkErrorFragment_to_mainScreenFragment);
+            Navigation.findNavController(view).navigateUp()
         }
     }
 

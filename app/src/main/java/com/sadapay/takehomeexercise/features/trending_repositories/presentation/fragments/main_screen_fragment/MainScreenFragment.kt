@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.presentation.fragments.main_screen_fragment
+package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentMainScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainScreenFragment: Fragment() {
