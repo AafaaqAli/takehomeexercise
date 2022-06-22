@@ -3,7 +3,9 @@ package com.sadapay.takehomeexercise.presentation.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sadapay.takehomeexercise.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     /**
      * View Binding

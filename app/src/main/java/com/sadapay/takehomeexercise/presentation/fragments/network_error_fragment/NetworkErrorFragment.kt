@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentNetworkErrorBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class NetworkErrorFragment : Fragment() {
+@AndroidEntryPoint
+class NetworkErrorFragment: Fragment() {
 
     /**
      * ViewModel
@@ -36,6 +40,15 @@ class NetworkErrorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this)[NetworkErrorViewModel::class.java]
+
+
+        /*
+        * TODO: For testing only
+        * TODO: REMOVE AFTER TESTING
+        * */
+        binding.buttonRetry.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_networkErrorFragment_to_mainScreenFragment);
+        }
     }
 
 

@@ -10,12 +10,15 @@
     <color name="color_background">#EAEAEA</color>
 
     <!--Design defined colors-->
-    <color name="text_color_lite_grey">#757474</color>
-    <color name="text_color_warm_grey">#606060</color>
+    <color name="color_light_grey">#757474</color>
+    <color name="color_warm_grey">#606060</color>
 
     <!--shimmer color-->
     <color name="shimmerColor">#D3D3D3</color>
     <color name="color_green">#7AB17B</color>
+
+    <!--TODO dark theme colors-->
+    <!--TODO light theme colors-->
 
 
 </resources>

@@ -54,7 +54,7 @@
                     android:layout_marginBottom="@dimen/_8sdp"
                     android:background="@drawable/shimmer_round_edges"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/text_color_lite_grey"
+                    android:textColor="@color/color_light_grey"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                     android:background="@drawable/shimmer_round_edges"
                     android:fontFamily="@font/vega_sb_bold"
                     android:scrollbars="vertical"
-                    android:textColor="@color/text_color_warm_grey"
+                    android:textColor="@color/color_warm_grey"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
                     android:fontFamily="sans-serif"
                     android:lines="3"
                     android:scrollbars="vertical"
-                    android:textColor="@color/text_color_warm_grey"
+                    android:textColor="@color/color_warm_grey"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold"
                     android:visibility="gone" />

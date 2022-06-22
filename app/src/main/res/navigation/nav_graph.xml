@@ -21,6 +21,8 @@
         tools:layout="@layout/fragment_network_error" >
         <action
             android:id="@+id/action_networkErrorFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
+            app:destination="@id/mainScreenFragment"
+            app:popUpTo="@+id/mainScreenFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

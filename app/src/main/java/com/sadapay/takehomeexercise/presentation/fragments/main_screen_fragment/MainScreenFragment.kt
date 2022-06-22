@@ -1,15 +1,21 @@
 package com.sadapay.takehomeexercise.presentation.fragments.main_screen_fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentMainScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MainScreenFragment : Fragment() {
+@AndroidEntryPoint
+class MainScreenFragment: Fragment() {
     /**
      * ViewModel
      * */
@@ -35,6 +41,16 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
+
+
+        /*
+       * TODO: For testing only
+       * TODO: REMOVE AFTER TESTING
+       * */
+        binding.mainScreenLayoutSwipeToRefresh.setOnRefreshListener {
+            binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
+            Navigation.findNavController(view).navigate(R.id.action_mainScreenFragment_to_networkErrorFragment);
+        }
     }
 
 
