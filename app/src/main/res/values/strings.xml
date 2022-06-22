@@ -1,0 +1,8 @@
+<resources>
+    <!--
+        using dynamic naming with respect to build type.
+    -->
+    <string name="app_name">Sadapay.exercise</string>
+    <string name="app_name_debug">debug.exercise</string>
+    <string name="app_name_qa">qa.exercise</string>
+</resources>
