@@ -1,5 +1,6 @@
 package com.sadapay.takehomeexercise.di
 
+import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
@@ -8,7 +9,18 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import androidx.room.Room
 import com.sadapay.app_utils.constants.AppConstants
+import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.local.TrendingRepositoryDao
+import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.local.TrendingRepositoryDatabase
+import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingApiNetworkDataSource
+import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingRepositoryAPIService
+import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.repository.TrendingItemRepositoryImp
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.repository.TrendingItemRepository
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.DeleteAllTrendingRepositoriesUseCase
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.GetAllTrendingRepositoriesUseCase
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.InsertTrendingRepositoryUseCase
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.UseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,6 +64,43 @@ object AppModule {
              * */
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { appContext.preferencesDataStoreFile(AppConstants.APP_PREFERENCES_NAME) }
+        )
+    }
+
+
+    /**
+     * Room Specific dependencies
+     * */
+    @Provides
+    @Singleton
+    fun providesNoteDatabase(application: Application): TrendingRepositoryDatabase {
+        return Room.databaseBuilder(
+            application,
+            TrendingRepositoryDatabase::class.java,
+            AppConstants.DATABASE_NAME
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesNoteDao(trendingRepositoryDatabase: TrendingRepositoryDatabase): TrendingRepositoryDao =
+        trendingRepositoryDatabase.trendingRepositoryDao
+
+    @Provides
+    @Singleton
+    fun providesTrendingRepositoryNetworkDatasource(
+        trendingApiNetworkDataSource: TrendingApiNetworkDataSource,
+        trendingRepositoryDao: TrendingRepositoryDao
+    ): TrendingItemRepository =
+        TrendingItemRepositoryImp(trendingApiNetworkDataSource, trendingRepositoryDao)
+
+    @Provides
+    @Singleton
+    fun providesNoteUseCases(repository: TrendingItemRepository): UseCases {
+        return UseCases(
+            DeleteAllTrendingRepositoriesUseCase(repository),
+            GetAllTrendingRepositoriesUseCase(repository),
+            InsertTrendingRepositoryUseCase(repository)
         )
     }
 }

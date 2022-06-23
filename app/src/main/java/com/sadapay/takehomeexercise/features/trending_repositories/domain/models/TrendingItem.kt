@@ -1,6 +1,12 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.domain.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class TrendingItem(
+
+    @PrimaryKey
     private val itemID: Int,
     private val repositoryStars: Int,
     private val forksCount: Int,
