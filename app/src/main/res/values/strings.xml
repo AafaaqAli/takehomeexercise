@@ -17,4 +17,6 @@
     <string name="page_title_trending">Trending</string>
     <string name="content_description_switch_ui_mode">Switch UI Mode</string>
     <string name="switch_ui_mode">Switch UI mode</string>
+    <string name="no_connectivity">No connectivity</string>
+    <string name="connection_available">Connection available</string>
 </resources>

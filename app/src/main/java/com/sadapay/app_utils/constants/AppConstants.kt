@@ -1,4 +1,4 @@
-package com.sadapay.app_utils
+package com.sadapay.app_utils.constants
 
 object AppConstants {
     /**

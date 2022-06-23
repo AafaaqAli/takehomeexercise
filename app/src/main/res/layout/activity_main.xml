@@ -23,12 +23,43 @@
                 app:titleCentered="true" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.fragment.app.FragmentContainerView
+        <!-- should be gone by default-->
+        <RelativeLayout
+            android:id="@+id/relative_layout_ribbon_no_network"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_18sdp"
             android:layout_below="@+id/topAppBarLayout"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:id="@+id/text_view_no_connectivity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="#A9D50000"
+                android:gravity="center_vertical|center"
+                android:text="@string/no_connectivity"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/text_view_connectivity_available"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="#4DB351"
+                android:gravity="center_vertical|center"
+                android:text="@string/connection_available"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/topAppBarLayout"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

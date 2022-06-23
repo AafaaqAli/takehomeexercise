@@ -1,7 +1,7 @@
 package com.sadapay.takehomeexercise.di
 
-import com.sadapay.app_utils.AppConstants
-import com.sadapay.takehomeexercise.features.trending_repositories.data.network.RestAPI
+import com.sadapay.app_utils.constants.AppConstants
+import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingRepositoryAPIService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,5 +40,5 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): RestAPI = retrofit.create(RestAPI::class.java)
+    fun provideApiService(retrofit: Retrofit): TrendingRepositoryAPIService = retrofit.create(TrendingRepositoryAPIService::class.java)
 }
