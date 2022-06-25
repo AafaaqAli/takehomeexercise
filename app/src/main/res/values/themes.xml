@@ -14,7 +14,17 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:fontFamily">@font/vega_sb_medium</item>
+    <style name="ToolbarTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:fontFamily">@font/vega_sb_bold</item>
+        <item name="android:textSize">@dimen/_24ssp</item>
+        <item name="android:actionBarStyle">@style/ToolbarTheme.MyActionBar</item>
+    </style>
+
+    <style name="ToolbarTheme.MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/ToolbarTheme.MyActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="ToolbarTheme.MyActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

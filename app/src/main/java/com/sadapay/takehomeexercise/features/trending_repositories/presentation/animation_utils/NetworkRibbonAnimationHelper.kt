@@ -10,14 +10,13 @@ object NetworkRibbonAnimationHelper {
     @OptIn(DelicateCoroutinesApi::class)
     fun animateRibbon(binding: ActivityMainBinding, isNetworkAvailable: Boolean) {
         if (isNetworkAvailable) {
-
             binding.apply {
                 showRibbon(this, isNetworkAvailable)
             }
 
             GlobalScope.launch(Dispatchers.Main) {
-                delay(2000)
-                binding.textViewConnectivityAvailable.visibility = View.GONE
+                delay(4000)
+                binding.networkRibbon.textViewConnectivityAvailable.visibility = View.GONE
                 hideRibbon(binding)
             }
 
@@ -32,16 +31,16 @@ object NetworkRibbonAnimationHelper {
     }
 
     private fun hideRibbon(binding: ActivityMainBinding) {
-        binding.relativeLayoutRibbonNoNetwork.visibility = View.GONE
-        binding.textViewConnectivityAvailable.visibility = View.GONE
-        binding.textViewNoConnectivity.visibility = View.GONE
+        binding.networkRibbon.relativeLayoutRibbonNoNetwork.visibility = View.GONE
+        binding.networkRibbon.textViewConnectivityAvailable.visibility = View.GONE
+        binding.networkRibbon.textViewNoConnectivity.visibility = View.GONE
 
         binding.navHostFragment.apply {
 
             ObjectAnimator.ofFloat(
                 this,
                 View.TRANSLATION_Y,
-                binding.relativeLayoutRibbonNoNetwork.height.toFloat(),
+                binding.networkRibbon.relativeLayoutRibbonNoNetwork.height.toFloat(),
                 0f
             ).apply {
                 duration = 200
@@ -49,11 +48,11 @@ object NetworkRibbonAnimationHelper {
             }
         }
 
-        binding.relativeLayoutRibbonNoNetwork.apply {
+        binding.networkRibbon.relativeLayoutRibbonNoNetwork.apply {
             ObjectAnimator.ofFloat(
                 this,
                 View.TRANSLATION_Y,
-                binding.relativeLayoutRibbonNoNetwork.height.toFloat(),
+                binding.networkRibbon.relativeLayoutRibbonNoNetwork.height.toFloat(),
                 0f
 
             ).apply {
@@ -65,15 +64,15 @@ object NetworkRibbonAnimationHelper {
 
     private fun showRibbon(binding: ActivityMainBinding, isNetworkAvailable: Boolean) {
         if (isNetworkAvailable) {
-            binding.textViewNoConnectivity.visibility = View.GONE
-            binding.textViewConnectivityAvailable.visibility = View.VISIBLE
+            binding.networkRibbon.textViewNoConnectivity.visibility = View.GONE
+            binding.networkRibbon.textViewConnectivityAvailable.visibility = View.VISIBLE
         } else {
-            binding.textViewConnectivityAvailable.visibility = View.GONE
-            binding.textViewNoConnectivity.visibility = View.VISIBLE
+            binding.networkRibbon.textViewConnectivityAvailable.visibility = View.GONE
+            binding.networkRibbon.textViewNoConnectivity.visibility = View.VISIBLE
         }
-        binding.relativeLayoutRibbonNoNetwork.visibility = View.VISIBLE
+        binding.networkRibbon.relativeLayoutRibbonNoNetwork.visibility = View.VISIBLE
 
-        binding.relativeLayoutRibbonNoNetwork.apply {
+        binding.networkRibbon.relativeLayoutRibbonNoNetwork.apply {
             ObjectAnimator.ofFloat(
                 this,
                 View.TRANSLATION_Y,

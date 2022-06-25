@@ -1,7 +1,9 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.sadapay.app_utils.utils.ConnectionLiveData
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
@@ -10,6 +12,7 @@ import com.sadapay.takehomeexercise.features.trending_repositories.presentation.
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
@@ -17,9 +20,10 @@ import javax.inject.Inject
 class MainScreenViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
-
+    private var connectionLiveData = ConnectionLiveData(application)
     private val _state = MutableStateFlow<MainFragmentUIState>(MainFragmentUIState.Empty)
-    val mainScreenStateFlow: StateFlow<MainFragmentUIState> = _state
+
+    val mainScreenStateFlow: SharedFlow<MainFragmentUIState> = _state
 
     private var trendingItems: List<TrendingItem> = ArrayList()
     private val recyclerViewAdapter: TrendingRepositoriesAdapter = TrendingRepositoriesAdapter()
@@ -324,7 +328,7 @@ class MainScreenViewModel @Inject constructor(
         )
         setTrendingItemList(arrayListOfItems)
         recyclerViewAdapter.notifyDataSetChanged()
-        delay(4000)
+        delay(10000)
         _state.value = MainFragmentUIState.LoadSuccess
     }
 
@@ -353,13 +357,13 @@ class MainScreenViewModel @Inject constructor(
          *
          * */
 
-        val connectionLiveData = ConnectionLiveData(application)
-        if (connectionLiveData.value == false) {
+        if (connectionLiveData.value == true) {
             /**
              * Check sync status & get data accordingly
              * */
-        }else{
-            _state.value = MainFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))
+        } else {
+            _state.value =
+                MainFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))
 
         }
     }

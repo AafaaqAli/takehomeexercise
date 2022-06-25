@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".features.trending_repositories.presentation.fragments.network_error_fragment.NetworkErrorFragment">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment.NetworkErrorViewModel" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -64,7 +71,10 @@
             android:layout_marginEnd="@dimen/_45sdp"
             android:layout_marginBottom="@dimen/_55sdp"
             android:background="@drawable/ripple_retry_background"
+            android:clickable="true"
             android:elevation="@dimen/_10sdp"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.onRetryClicked()}"
             android:text="@string/retry"
             android:textColor="@color/color_green" />
     </RelativeLayout>

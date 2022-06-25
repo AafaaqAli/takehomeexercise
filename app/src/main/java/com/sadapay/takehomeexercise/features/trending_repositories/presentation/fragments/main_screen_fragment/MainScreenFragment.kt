@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.room.Update
 import com.google.android.material.snackbar.Snackbar
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentMainScreenBinding
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIState
+import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIStateHelper
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 
@@ -72,6 +75,7 @@ class MainScreenFragment : Fragment() {
     /**
      * Observer UI States from ViewModel
      * */
+    @OptIn(DelicateCoroutinesApi::class)
     private fun getStates() {
         /**
          * Should Start listening the state onResume
@@ -85,7 +89,7 @@ class MainScreenFragment : Fragment() {
                          * */
                         binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
                         Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment);
+                            .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment)
                     }
 
                     is MainFragmentUIState.LoadingError -> {
@@ -99,17 +103,14 @@ class MainScreenFragment : Fragment() {
                         /**
                          * Items currently loading in recyclerview
                          * */
-                        binding.shimmerLayoutMain.shimmerLayout.startShimmer()
+                        MainFragmentUIStateHelper.disableComponentsOnLoading(binding)
                     }
 
                     is MainFragmentUIState.LoadSuccess -> {
                         /**
                          * Successful Loading of items
                          * */
-                        binding.shimmerLayoutMain.shimmerLayout.stopShimmer()
-                        binding.shimmerLayoutMain.shimmerLayout.visibility = View.GONE
-                        binding.recyclerViewTrendingRepos.visibility = View.VISIBLE
-
+                        MainFragmentUIStateHelper.enableComponentsAfterLoading(binding)
                     }
 
                     is MainFragmentUIState.Empty -> {
