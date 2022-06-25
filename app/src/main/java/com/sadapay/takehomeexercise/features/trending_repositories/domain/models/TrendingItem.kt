@@ -7,19 +7,19 @@ import androidx.room.PrimaryKey
 data class TrendingItem(
 
     @PrimaryKey
-    private val itemID: Int,
-    private val repositoryStars: Int,
-    private val forksCount: Int,
+    var itemID: Int,
+    var repositoryStars: Int,
+    var forksCount: Int,
 
-    private val isItemExpanded: Boolean,
-    private val avatarURL: String,
-    private val itemHeading: String,
-    private val itemDescription: String,
-    private val repositoryLanguage: String,
+    var isItemExpanded: Boolean,
+    var avatarURL: String,
+    var itemHeading: String,
+    var itemDescription: String,
+    var repositoryLanguage: String,
 
     /**
      * Extras: maybe used in future implementations
      * */
-    private val userURLPage: String,
-    private val repositoryURLPage: String,
+    var userURLPage: String,
+    var repositoryURLPage: String,
 )

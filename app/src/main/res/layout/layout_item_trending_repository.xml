@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="recyclerViewModel"
+            type="com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel" />
+    </data>
+
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:layout_width="wrap_content"
@@ -9,7 +24,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:animateLayoutChanges="true"
             android:orientation="horizontal">
 
@@ -28,10 +46,11 @@
 
                 <ImageView
                     android:id="@+id/image_view_avatar"
-                    android:layout_width="@dimen/_42sdp"
-                    android:layout_height="@dimen/_42sdp"
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_38sdp"
                     android:background="@color/shimmerColor"
-                    android:contentDescription="@string/user_avatar" />
+                    android:contentDescription="@string/user_avatar"
+                    bind:image="@{recyclerViewModel.getGetAvatarLink(position)}" />
             </androidx.cardview.widget.CardView>
 
             <!--user name & repository name-->
@@ -47,13 +66,13 @@
                 android:orientation="vertical">
 
                 <TextView
-
                     android:id="@+id/text_view_user_name"
                     android:layout_width="@dimen/_150sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_8sdp"
                     android:background="@drawable/shimmer_round_edges"
                     android:fontFamily="sans-serif"
+                    android:text="@{recyclerViewModel.getTitle(position)}"
                     android:textColor="@color/color_light_grey"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
@@ -66,6 +85,7 @@
                     android:background="@drawable/shimmer_round_edges"
                     android:fontFamily="@font/vega_sb_bold"
                     android:scrollbars="vertical"
+                    android:text="@{recyclerViewModel.getDescription(position)}"
                     android:textColor="@color/color_warm_grey"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -82,6 +102,7 @@
                     android:fontFamily="sans-serif"
                     android:lines="3"
                     android:scrollbars="vertical"
+                    android:text="@{recyclerViewModel.getDescription(position)}"
                     android:textColor="@color/color_warm_grey"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold"
@@ -105,6 +126,7 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:background="@color/shimmerColor"
                         android:drawablePadding="8dp"
+                        android:text="@{recyclerViewModel.getLanguage(position)}"
                         android:textSize="@dimen/_10sdp"
                         app:drawableStartCompat="@drawable/language_drawable" />
 
@@ -114,6 +136,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/shimmerColor"
                         android:drawablePadding="8dp"
+                        android:text="@{recyclerViewModel.getStars(position)}"
                         android:textSize="@dimen/_10sdp"
                         app:drawableStartCompat="@drawable/baseline_grade_24" />
 

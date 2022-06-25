@@ -12,7 +12,6 @@ import kotlinx.coroutines.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var connectionLiveData: ConnectionLiveData
-
     /**
      * View Binding
      * */

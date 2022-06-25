@@ -18,6 +18,7 @@
             android:paddingTop="@dimen/_15sdp"
             android:paddingEnd="@dimen/_15sdp"
             android:paddingBottom="@dimen/_4sdp"
+            app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/lottie_network_error" />
 
@@ -34,9 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_4sdp"
+                android:fontFamily="@font/vega_sb_medium"
                 android:text="@string/something_went_wrong"
                 android:textAlignment="center"
-                android:fontFamily="@font/vega_sb_medium"
                 android:textColor="@color/color_warm_grey"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold" />
