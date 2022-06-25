@@ -34,6 +34,7 @@ class TrendingRepositoriesAdapter(
             binding.setVariable(BR.recyclerViewModel, mainFragmentViewModel)
             binding.setVariable(BR.position, position)
             binding.executePendingBindings()
+
         }
     }
 

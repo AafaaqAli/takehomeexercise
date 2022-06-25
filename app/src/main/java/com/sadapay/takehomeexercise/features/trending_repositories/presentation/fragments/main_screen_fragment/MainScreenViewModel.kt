@@ -20,308 +20,303 @@ class MainScreenViewModel() : ViewModel() {
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun populateRecyclerView() = runBlocking {
-        val job = kotlin.runCatching {
-            /**
-             * For now use notifyDataSetChanged but use diff-utils
-             * */
-            val arrayListOfItems: ArrayList<TrendingItem> = arrayListOf()
-            arrayListOfItems.add(
-                TrendingItem(
-                    1,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    1,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    2,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    3,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    4,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    5,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    6,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    7,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    8,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    9,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-
-            arrayListOfItems.add(
-                TrendingItem(
-                    10,
-                    500,
-                    20,
-                    false,
-                    "https://picsum.photos/200/300",
-                    "Item Heading",
-                    "Item Description",
-                    "Python",
-                    "https://picsum.photos/200/300",
-                    "https://picsum.photos/200/300"
-                )
-            )
-            setTrendingItemList(arrayListOfItems)
-            recyclerViewAdapter.notifyDataSetChanged()
-        }
-
+    fun populateRecyclerView() = GlobalScope.launch {
         /**
-         * Something went wrong while loading
+         * TODO: Remove on implementing data sources, Mocking the loading state,
          * */
-        _state.value = if (job.isSuccess) {
-            MainFragmentUIState.LoadSuccess
-        } else {
-            MainFragmentUIState.LoadingError("Something went wrong...")
-        }
+        _state.value = MainFragmentUIState.Loading
+        /**
+         * For now use notifyDataSetChanged but use diff-utils
+         * */
+        val arrayListOfItems: ArrayList<TrendingItem> = arrayListOf()
+        arrayListOfItems.add(
+            TrendingItem(
+                1,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                1,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                2,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                3,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                4,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                5,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                6,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                7,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                8,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                9,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+
+        arrayListOfItems.add(
+            TrendingItem(
+                10,
+                500,
+                20,
+                false,
+                "https://picsum.photos/200/300",
+                "Item Heading",
+                "Item Description",
+                "Python",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+            )
+        )
+        setTrendingItemList(arrayListOfItems)
+        recyclerViewAdapter.notifyDataSetChanged()
+        delay(4000)
+        _state.value = MainFragmentUIState.LoadSuccess
     }
 
     fun setTrendingItemList(list: List<TrendingItem>) {

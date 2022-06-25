@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.collect
 
 
 @AndroidEntryPoint
-class MainScreenFragment: Fragment() {
+class MainScreenFragment : Fragment() {
     /**
      * ViewModel
      * */
@@ -28,6 +28,7 @@ class MainScreenFragment: Fragment() {
      * */
     private var _binding: FragmentMainScreenBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +66,8 @@ class MainScreenFragment: Fragment() {
        * */
         binding.mainScreenLayoutSwipeToRefresh.setOnRefreshListener {
             binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
-            Navigation.findNavController(view).navigate(R.id.action_mainScreenFragment_to_networkErrorFragment);
+            Navigation.findNavController(view)
+                .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment);
         }
     }
 
@@ -84,8 +86,8 @@ class MainScreenFragment: Fragment() {
         /**
          * Should Start listening the state onResume
          * */
-        lifecycleScope.launchWhenResumed {
-            viewModel.mainScreenStateFlow.collect(){
+        lifecycleScope.launchWhenStarted {
+            viewModel.mainScreenStateFlow.collect() {
                 when (it) {
                     is MainFragmentUIState.NoInternet -> {
                         Toast.makeText(context, it.networkError, Toast.LENGTH_SHORT).show()
@@ -105,12 +107,17 @@ class MainScreenFragment: Fragment() {
                         /**
                          * Items currently loading in recyclerview
                          * */
+                        binding.shimmerLayoutMain.shimmerLayout.startShimmer()
                     }
 
                     is MainFragmentUIState.LoadSuccess -> {
                         /**
                          * Successful Loading of items
                          * */
+                        binding.shimmerLayoutMain.shimmerLayout.stopShimmer()
+                        binding.shimmerLayoutMain.shimmerLayout.visibility = View.GONE
+                        binding.recyclerViewTrendingRepos.visibility = View.VISIBLE
+
                     }
 
                     is MainFragmentUIState.Empty -> {

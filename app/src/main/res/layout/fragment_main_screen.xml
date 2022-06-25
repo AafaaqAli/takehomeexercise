@@ -5,12 +5,14 @@
     tools:context=".features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenFragment">
 
     <data>
+
         <variable
             name="position"
-            type="Integer"/>
+            type="Integer" />
+
         <variable
             name="recyclerViewModel"
-            type="com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel"/>
+            type="com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -22,11 +24,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <include
+                android:id="@+id/shimmerLayout_main"
+                layout="@layout/shimmer_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_trending_repos"
                 android:layout_width="match_parent"
-                app:setAdapter="@{recyclerViewModel.recyclerViewAdapter}"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:fadeScrollbars="true"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="@dimen/_24sdp"
+                android:scrollbarStyle="insideInset"
+                android:scrollbarThumbVertical="@drawable/scrollbar_thumb"
+                android:scrollbars="vertical"
+                android:visibility="gone"
+                android:requiresFadingEdge="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setAdapter="@{recyclerViewModel.recyclerViewAdapter}" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

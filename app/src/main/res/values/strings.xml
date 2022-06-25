@@ -19,4 +19,7 @@
     <string name="switch_ui_mode">Switch UI mode</string>
     <string name="no_connectivity">No connectivity</string>
     <string name="connection_available">Connection available</string>
+
+    <!--spaces-->
+    <string name="string_place_holder">&#160;&#160;&#160;&#160;&#160;&#160;</string>
 </resources>
