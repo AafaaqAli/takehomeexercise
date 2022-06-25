@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentMainScreenBinding
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIState
@@ -57,18 +57,8 @@ class MainScreenFragment : Fragment() {
         /**
          * RecyclerView
          * */
-        binding.recyclerViewModel = this.viewModel
+        binding.viewModel = this.viewModel
         viewModel.populateRecyclerView()
-
-        /*
-       * TODO: For testing only
-       * TODO: REMOVE AFTER TESTING
-       * */
-        binding.mainScreenLayoutSwipeToRefresh.setOnRefreshListener {
-            binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
-            Navigation.findNavController(view)
-                .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment);
-        }
     }
 
     /**
@@ -90,14 +80,16 @@ class MainScreenFragment : Fragment() {
             viewModel.mainScreenStateFlow.collect() {
                 when (it) {
                     is MainFragmentUIState.NoInternet -> {
-                        Toast.makeText(context, it.networkError, Toast.LENGTH_SHORT).show()
                         /**
                          * Items loading got failed due to some error
                          * */
+                        binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
+                        Navigation.findNavController(binding.root)
+                            .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment);
                     }
 
                     is MainFragmentUIState.LoadingError -> {
-                        Toast.makeText(context, it.errorMessage, Toast.LENGTH_SHORT).show()
+                        Snackbar.make(binding.root, it.errorMessage, Snackbar.LENGTH_LONG).show()
                         /**
                          * Items loading got failed due to some error
                          * */

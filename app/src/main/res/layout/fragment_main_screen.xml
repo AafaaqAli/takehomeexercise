@@ -11,14 +11,15 @@
             type="Integer" />
 
         <variable
-            name="recyclerViewModel"
+            name="viewModel"
             type="com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/main_screen_layout_swipe_to_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> viewModel.fetchTrendingRepositories()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,16 +40,16 @@
                 android:fadeScrollbars="true"
                 android:fadingEdge="vertical"
                 android:fadingEdgeLength="@dimen/_24sdp"
+                android:requiresFadingEdge="vertical"
                 android:scrollbarStyle="insideInset"
                 android:scrollbarThumbVertical="@drawable/scrollbar_thumb"
                 android:scrollbars="vertical"
                 android:visibility="gone"
-                android:requiresFadingEdge="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setAdapter="@{recyclerViewModel.recyclerViewAdapter}" />
+                app:setAdapter="@{viewModel.recyclerViewAdapter}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

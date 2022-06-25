@@ -20,6 +20,9 @@
     <string name="no_connectivity">No connectivity</string>
     <string name="connection_available">Connection available</string>
 
-    <!--spaces-->
-    <string name="string_place_holder">&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="ERROR_MESSAGE_NETWORK_CHECK">"Kindly check your internet…"</string>
+
+
+
+
 </resources>

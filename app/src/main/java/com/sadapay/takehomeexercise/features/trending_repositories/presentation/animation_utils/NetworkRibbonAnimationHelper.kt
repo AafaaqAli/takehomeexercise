@@ -16,7 +16,7 @@ object NetworkRibbonAnimationHelper {
             }
 
             GlobalScope.launch(Dispatchers.Main) {
-                delay(3000)
+                delay(2000)
                 binding.textViewConnectivityAvailable.visibility = View.GONE
                 hideRibbon(binding)
             }
@@ -64,10 +64,10 @@ object NetworkRibbonAnimationHelper {
     }
 
     private fun showRibbon(binding: ActivityMainBinding, isNetworkAvailable: Boolean) {
-        if(isNetworkAvailable){
+        if (isNetworkAvailable) {
             binding.textViewNoConnectivity.visibility = View.GONE
             binding.textViewConnectivityAvailable.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.textViewConnectivityAvailable.visibility = View.GONE
             binding.textViewNoConnectivity.visibility = View.VISIBLE
         }
@@ -80,9 +80,9 @@ object NetworkRibbonAnimationHelper {
                 0f,
                 2f
             ).apply {
-                    duration = 200
-                    start()
-                }
+                duration = 200
+                start()
+            }
         }
 
         binding.navHostFragment.apply {

@@ -1,14 +1,23 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.sadapay.app_utils.utils.ConnectionLiveData
+import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters.TrendingRepositoriesAdapter
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-class MainScreenViewModel() : ViewModel() {
+@HiltViewModel
+class MainScreenViewModel @Inject constructor(
+    private val application: Application
+) : ViewModel() {
+
     private val _state = MutableStateFlow<MainFragmentUIState>(MainFragmentUIState.Empty)
     val mainScreenStateFlow: StateFlow<MainFragmentUIState> = _state
 
@@ -317,6 +326,42 @@ class MainScreenViewModel() : ViewModel() {
         recyclerViewAdapter.notifyDataSetChanged()
         delay(4000)
         _state.value = MainFragmentUIState.LoadSuccess
+    }
+
+    fun fetchTrendingRepositories() {
+        /**
+         * if(networkAvailable){
+         * if (db == null || db.entries.size == 0) {
+         *  populateData(doAPICall.onDataCollected.parseData()).also{
+         *      globalScope.launch(Dispachers.IO){
+         *          db.saveTrendingData()
+         *      }
+         *   }
+         * }else{
+         *      if(shouldSync && lastSyncTimeDifference >= 24Hours){
+         *          populateData(doAPICall.onDataCollected.parseData()).also{
+         *               globalScope.launch(Dispachers.IO){
+         *                  db.saveTrendingData()
+         *               }
+         *            }
+         *      }
+         * }
+         *
+         * }else{
+         *  NavigateUserToNetworkErrorFragment & Show Network Ribbon
+         * }
+         *
+         * */
+
+        val connectionLiveData = ConnectionLiveData(application)
+        if (connectionLiveData.value == false) {
+            /**
+             * Check sync status & get data accordingly
+             * */
+        }else{
+            _state.value = MainFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))
+
+        }
     }
 
     fun setTrendingItemList(list: List<TrendingItem>) {

@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        /**
-         *TODO: Add animation to shift fragments when network status ribbon is gone or gets visible
-         * */
         connectionLiveData = ConnectionLiveData(this)
+        if(connectionLiveData.value == false){
+            NetworkRibbonAnimationHelper.animateRibbon(binding, false)
+        }
         connectionLiveData.observe(this) { isNetworkAvailable ->
             NetworkRibbonAnimationHelper.animateRibbon(binding, isNetworkAvailable)
         }
