@@ -111,7 +111,6 @@ class MainScreenFragment: Fragment() {
                         /**
                          * Successful Loading of items
                          * */
-
                     }
 
                     is MainFragmentUIState.Empty -> {

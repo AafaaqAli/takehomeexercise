@@ -25,6 +25,7 @@
 
         <!-- should be gone by default-->
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/relative_layout_ribbon_no_network"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_18sdp"
@@ -59,7 +60,7 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/topAppBarLayout"
+            android:layout_below="@+id/relative_layout_ribbon_no_network"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

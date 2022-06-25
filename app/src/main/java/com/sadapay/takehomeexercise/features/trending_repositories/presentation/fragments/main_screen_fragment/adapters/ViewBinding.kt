@@ -1,6 +1,5 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters
 
-import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,7 +8,7 @@ import com.bumptech.glide.Glide
 
 
 class ViewBinding {
-    companion object{
+    companion object {
         @BindingAdapter(
             value = ["setAdapter"],
             requireAll = false
@@ -27,8 +26,9 @@ class ViewBinding {
 
         @BindingAdapter("image")
         @JvmStatic
-        fun ImageView.bindImage(url: String) {
-            Glide.with(this).load(Uri.parse(url)).into(this)
+        fun setImage(image: ImageView, url: String?) {
+            Glide.with(image.context).load(url).centerCrop()
+                .into(image)
         }
     }
 }
