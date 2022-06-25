@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         connectionLiveData = ConnectionLiveData(this)
-        if(connectionLiveData.value == false){
-            NetworkRibbonAnimationHelper.animateRibbon(binding, false)
-        }
         connectionLiveData.observe(this) { isNetworkAvailable ->
             NetworkRibbonAnimationHelper.animateRibbon(binding, isNetworkAvailable)
         }
