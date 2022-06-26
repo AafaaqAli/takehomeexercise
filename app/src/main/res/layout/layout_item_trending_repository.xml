@@ -4,7 +4,6 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
@@ -12,7 +11,7 @@
             type="Integer" />
 
         <variable
-            name="recyclerViewModel"
+            name="viewModel"
             type="com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel" />
     </data>
 
@@ -21,10 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        android:paddingTop="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_4sdp"
         android:animateLayoutChanges="true"
-        android:orientation="horizontal">
+        android:onClick="@{() -> viewModel.getIsExpanded(position) ? viewModel.setIsExpanded(position, false) :  viewModel.setIsExpanded(position, true)}"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_10sdp">
 
         <!-- round avatar-->
         <androidx.cardview.widget.CardView
@@ -32,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:background="@color/shimmerColor"
             android:innerRadius="0dp"
             android:shape="ring"
@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/_42sdp"
                 android:background="@color/shimmerColor"
                 android:contentDescription="@string/user_avatar"
-                bind:image="@{recyclerViewModel.getGetAvatarLink(position)}" />
+                bind:image="@{viewModel.getGetAvatarLink(position)}" />
         </androidx.cardview.widget.CardView>
 
         <!--user name & repository name-->
@@ -59,7 +59,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_6sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
             android:layout_toEndOf="@+id/card_view_avatar"
             android:orientation="vertical">
 
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:fontFamily="sans-serif"
-                android:text="@{recyclerViewModel.getTitle(position)}"
+                android:text="@{viewModel.getTitleUserName(position)}"
                 android:textColor="@color/color_light_grey"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
@@ -81,7 +81,7 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:fontFamily="@font/vega_sb_bold"
                 android:scrollbars="vertical"
-                android:text="@{recyclerViewModel.getDescription(position)}"
+                android:text="@{viewModel.getRepositoryName(position)}"
                 android:textColor="@color/color_warm_grey"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
@@ -95,13 +95,12 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:ellipsize="marquee"
                 android:fontFamily="sans-serif"
-                android:lines="3"
                 android:scrollbars="vertical"
-                android:text="@{recyclerViewModel.getDescription(position)}"
+                android:text="@{viewModel.getDescription(position)}"
                 android:textColor="@color/color_warm_grey"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
-                android:visibility="gone" />
+                android:visibility="@{viewModel.getIsExpanded(position) ? View.VISIBLE: View.GONE}" />
 
 
             <!--starts and icons-->
@@ -111,7 +110,7 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="@{viewModel.getIsExpanded(position) ? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/text_view_repo_language"
@@ -119,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:drawablePadding="8dp"
-                    android:text="@{recyclerViewModel.getLanguage(position)}"
+                    android:text="@{viewModel.getLanguage(position)}"
                     android:textSize="@dimen/_10sdp"
                     app:drawableStartCompat="@drawable/language_drawable" />
 
@@ -128,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
-                    android:text="@{recyclerViewModel.getStars(position)}"
+                    android:text="@{viewModel.getStars(position)}"
                     android:textSize="@dimen/_10sdp"
                     app:drawableStartCompat="@drawable/baseline_grade_24" />
 

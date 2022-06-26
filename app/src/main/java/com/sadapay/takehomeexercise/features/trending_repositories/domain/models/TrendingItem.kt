@@ -13,7 +13,8 @@ data class TrendingItem(
 
     var isItemExpanded: Boolean,
     var avatarURL: String,
-    var itemHeading: String,
+    var itemHeadingUserName: String,
+    var itemSubHeadingRepositoryName: String,
     var itemDescription: String,
     var repositoryLanguage: String,
 

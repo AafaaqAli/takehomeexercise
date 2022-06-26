@@ -31,10 +31,9 @@ class TrendingRepositoriesAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(mainFragmentViewModel: MainScreenViewModel?, position: Int?) {
-            binding.setVariable(BR.recyclerViewModel, mainFragmentViewModel)
+            binding.setVariable(BR.viewModel, mainFragmentViewModel)
             binding.setVariable(BR.position, position)
             binding.executePendingBindings()
-
         }
     }
 
