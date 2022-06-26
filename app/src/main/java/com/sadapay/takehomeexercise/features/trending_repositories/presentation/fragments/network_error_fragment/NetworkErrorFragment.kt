@@ -8,12 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
-import com.google.android.material.snackbar.Snackbar
+import androidx.navigation.fragment.NavHostFragment
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentNetworkErrorBinding
-import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIState
-import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIStateHelper
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment.ui_states.NetworkErrorFragmentUIState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -95,7 +92,8 @@ class NetworkErrorFragment : Fragment() {
                         /**
                          * Network Available now can navigate to Main Fragment for loading
                          * */
-                        Navigation.findNavController(binding.root).navigateUp()
+                        NavHostFragment.findNavController(this@NetworkErrorFragment)
+                            .navigate(R.id.action_networkErrorFragment_to_mainScreenFragment)
                     }
                 }
             }

@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
-import androidx.room.Update
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentMainScreenBinding
@@ -77,6 +76,7 @@ class MainScreenFragment : Fragment() {
      * */
     @OptIn(DelicateCoroutinesApi::class)
     private fun getStates() {
+        var isFragmentLoaded = false
         /**
          * Should Start listening the state onResume
          * */
@@ -88,8 +88,11 @@ class MainScreenFragment : Fragment() {
                          * Items loading got failed due to some error
                          * */
                         binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
-                        Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment)
+                        if (!isFragmentLoaded) {
+                            NavHostFragment.findNavController(this@MainScreenFragment)
+                                .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment)
+                            isFragmentLoaded = true
+                        }
                     }
 
                     is MainFragmentUIState.LoadingError -> {

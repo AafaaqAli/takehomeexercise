@@ -3,6 +3,8 @@ package com.sadapay.takehomeexercise.features.trending_repositories.presentation
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import com.sadapay.app_utils.utils.ConnectionLiveData
+import com.sadapay.app_utils.utils.NetworkUtils
+import com.sadapay.app_utils.utils.NetworkUtils.isNetworkConnected
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment.ui_states.NetworkErrorFragmentUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,13 +17,11 @@ import javax.inject.Inject
 class NetworkErrorViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
-    private val connectionLiveData = ConnectionLiveData(application)
     private val _state = MutableStateFlow<NetworkErrorFragmentUIState>(NetworkErrorFragmentUIState.Empty)
-
     val networkErrorFragmentStateFlow: SharedFlow<NetworkErrorFragmentUIState> = _state
 
     fun onRetryClicked(){
-        if (connectionLiveData.value == true) {
+        if (application.isNetworkConnected() && NetworkUtils.internetIsConnected()) {
             _state.value = NetworkErrorFragmentUIState.NetworkAvailable
         }else{
             _state.value = NetworkErrorFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))

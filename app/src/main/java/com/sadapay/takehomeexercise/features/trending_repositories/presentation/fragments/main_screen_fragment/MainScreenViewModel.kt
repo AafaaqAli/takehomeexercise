@@ -1,10 +1,9 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.sadapay.app_utils.utils.ConnectionLiveData
+import com.sadapay.app_utils.utils.NetworkUtils
+import com.sadapay.app_utils.utils.NetworkUtils.isNetworkConnected
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters.TrendingRepositoriesAdapter
@@ -13,14 +12,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
-    private var connectionLiveData = ConnectionLiveData(application)
     private val _state = MutableStateFlow<MainFragmentUIState>(MainFragmentUIState.Empty)
 
     val mainScreenStateFlow: SharedFlow<MainFragmentUIState> = _state
@@ -328,7 +325,7 @@ class MainScreenViewModel @Inject constructor(
         )
         setTrendingItemList(arrayListOfItems)
         recyclerViewAdapter.notifyDataSetChanged()
-        delay(10000)
+        delay(3000)
         _state.value = MainFragmentUIState.LoadSuccess
     }
 
@@ -357,7 +354,7 @@ class MainScreenViewModel @Inject constructor(
          *
          * */
 
-        if (connectionLiveData.value == true) {
+        if (application.isNetworkConnected() && NetworkUtils.internetIsConnected()) {
             /**
              * Check sync status & get data accordingly
              * */

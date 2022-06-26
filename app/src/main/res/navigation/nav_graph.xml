@@ -31,8 +31,5 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             />
-        <action
-            android:id="@+id/action_networkErrorFragment_to_mainScreenFragment2"
-            app:destination="@id/mainScreenFragment" />
     </fragment>
 </navigation>

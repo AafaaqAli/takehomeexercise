@@ -7,6 +7,7 @@ import android.net.Network
 import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
+import com.sadapay.app_utils.utils.NetworkUtils.internetIsConnected
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,7 +45,7 @@ class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
             val hasInternetCapability = networkCapabilities?.hasCapability(NET_CAPABILITY_INTERNET)
             if (hasInternetCapability == true) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    val hasInternet = DoesNetworkHaveInternet.execute(network.socketFactory)
+                    val hasInternet = network.socketFactory.internetIsConnected()
                     if (hasInternet) {
                         withContext(Dispatchers.Main) {
                             validNetworks.add(network)
@@ -58,20 +59,6 @@ class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
         override fun onLost(network: Network) {
             validNetworks.remove(network)
             checkValidNetworks()
-        }
-    }
-
-    object DoesNetworkHaveInternet {
-
-        fun execute(socketFactory: SocketFactory): Boolean {
-            return try {
-                val socket = socketFactory.createSocket() ?: throw IOException("Socket is null.")
-                socket.connect(InetSocketAddress("8.8.8.8", 53), 1500)
-                socket.close()
-                true
-            } catch (e: IOException) {
-                false
-            }
         }
     }
 }
