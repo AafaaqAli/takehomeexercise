@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sadapay.app_utils.utils.network.ConnectionLiveData
 import com.sadapay.takehomeexercise.databinding.ActivityMainBinding
-import com.sadapay.takehomeexercise.features.trending_repositories.presentation.animation_utils.NetworkRibbonAnimationHelper
+import com.sadapay.app_utils.animation_utils.NetworkRibbonAnimationHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 

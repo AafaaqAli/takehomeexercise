@@ -1,4 +1,4 @@
-package com.sadapay.takehomeexercise.features.trending_repositories.presentation.animation_utils
+package com.sadapay.app_utils.animation_utils
 
 import android.animation.ObjectAnimator
 import android.view.View
