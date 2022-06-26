@@ -2,9 +2,7 @@ package com.sadapay.takehomeexercise.features.trending_repositories.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.lifecycleScope
-import com.sadapay.app_utils.utils.ConnectionLiveData
+import com.sadapay.app_utils.utils.network.ConnectionLiveData
 import com.sadapay.takehomeexercise.databinding.ActivityMainBinding
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.animation_utils.NetworkRibbonAnimationHelper
 import dagger.hilt.android.AndroidEntryPoint

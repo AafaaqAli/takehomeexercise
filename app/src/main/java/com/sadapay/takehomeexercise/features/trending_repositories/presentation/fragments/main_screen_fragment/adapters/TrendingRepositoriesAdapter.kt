@@ -9,8 +9,7 @@ import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.LayoutItemTrendingRepositoryBinding
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel
 
-class TrendingRepositoriesAdapter(
-): RecyclerView.Adapter<TrendingRepositoriesAdapter.ViewHolder>() {
+class TrendingRepositoriesAdapter: RecyclerView.Adapter<TrendingRepositoriesAdapter.ViewHolder>() {
     private lateinit var recyclerViewViewModel: MainScreenViewModel
     private lateinit var binding: LayoutItemTrendingRepositoryBinding
 

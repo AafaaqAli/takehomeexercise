@@ -3,8 +3,8 @@ package com.sadapay.takehomeexercise.features.trending_repositories.presentation
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
-import com.sadapay.app_utils.utils.NetworkUtils
-import com.sadapay.app_utils.utils.NetworkUtils.isNetworkConnected
+import com.sadapay.app_utils.utils.network.NetworkUtils
+import com.sadapay.app_utils.utils.network.NetworkUtils.isNetworkConnected
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters.TrendingItemsDiffUtil

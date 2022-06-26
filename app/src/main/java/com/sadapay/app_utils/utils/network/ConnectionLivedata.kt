@@ -1,4 +1,4 @@
-package com.sadapay.app_utils.utils
+package com.sadapay.app_utils.utils.network
 
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
@@ -7,14 +7,11 @@ import android.net.Network
 import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
-import com.sadapay.app_utils.utils.NetworkUtils.internetIsConnected
+import com.sadapay.app_utils.utils.network.NetworkUtils.internetIsConnected
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.IOException
-import java.net.InetSocketAddress
-import javax.net.SocketFactory
 
 class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
 

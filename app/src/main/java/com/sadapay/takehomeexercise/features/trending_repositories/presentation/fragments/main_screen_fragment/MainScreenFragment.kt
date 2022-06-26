@@ -81,7 +81,7 @@ class MainScreenFragment : Fragment() {
          * Should Start listening the state onResume
          * */
         lifecycleScope.launchWhenStarted {
-            viewModel.mainScreenStateFlow.collect() {
+            viewModel.mainScreenStateFlow.collect {
                 when (it) {
                     is MainFragmentUIState.NoInternet -> {
                         /**

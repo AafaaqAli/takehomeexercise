@@ -1,4 +1,4 @@
-package com.sadapay.app_utils.utils
+package com.sadapay.app_utils.utils.network
 
 import android.content.Context
 import android.net.ConnectivityManager

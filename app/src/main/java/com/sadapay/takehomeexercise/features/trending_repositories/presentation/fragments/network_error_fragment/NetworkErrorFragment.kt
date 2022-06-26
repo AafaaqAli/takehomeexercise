@@ -66,7 +66,7 @@ class NetworkErrorFragment : Fragment() {
          * Should Start listening the state onResume
          * */
         lifecycleScope.launchWhenStarted {
-            viewModel.networkErrorFragmentStateFlow.collect() {
+            viewModel.networkErrorFragmentStateFlow.collect {
                 when (it) {
                     is NetworkErrorFragmentUIState.NoInternet -> {
                         /**
