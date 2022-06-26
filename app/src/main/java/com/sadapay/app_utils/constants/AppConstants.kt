@@ -6,6 +6,9 @@ object AppConstants {
      * */
     const val APP_PREFERENCES_NAME: String = "sada_pay_preferences"
 
+    const val BASE_URL: String = "https://api.github.com/"
+    const val RELATIVE_URL: String = "search/repositories?q=language=+sort:stars"
+
     /**
      * Database/Table name & Version
      * */
@@ -14,8 +17,7 @@ object AppConstants {
     const val DATABASE_VERSION: Int = 1
 
     /**
-     * TODO: FIX BASE URL, INTRODUCE RELATIVE URL IN RETROFIT API CALL
-     * */
-    const val BASE_URL: String = "https://api.github.com/search/repositories?q=language=+sort:stars"
-
+     * Data store keys
+     */
+    const val LAST_SYNC_DATE_TIME = "trending_repositories_last_sync_time_store_key"
 }

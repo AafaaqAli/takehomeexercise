@@ -3,5 +3,7 @@ package com.sadapay.takehomeexercise.features.trending_repositories.domain.useca
 data class UseCases(
     val deleteAllTrendingRepositories: DeleteAllTrendingRepositoriesUseCase,
     val getAllTrendingRepositories: GetAllTrendingRepositoriesUseCase,
-    val insertTrendingRepositories: InsertTrendingRepositoryUseCase
+    val insertTrendingRepositories: InsertTrendingRepositoryUseCase,
+    val insertAllTrendingRepositoryUseCase: InsertAllTrendingRepositoryUseCase,
+    val deleteTrendingRepositoryByIdUseCase: DeleteTrendingRepositoryByIdUseCase
 )

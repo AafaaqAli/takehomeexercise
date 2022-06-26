@@ -6,15 +6,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class GetAllTrendingRepositoriesUseCase(
+class DeleteTrendingRepositoryByIdUseCase(
     private val repository: TrendingItemRepository
 ) {
     /**
-     * Make a mechanism to find if sync is needed if not than get from local database
+     * Delete Trending Repository by id
      * */
-    fun execute(){
+    fun execute(id: Int){
         CoroutineScope(Dispatchers.IO + Job()).launch {
-            repository.getTrendingRepositoriesFromRemote()
+            repository.deleteRepositoryByID(id)
         }
     }
 }

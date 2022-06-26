@@ -17,10 +17,7 @@ import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sou
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingRepositoryAPIService
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.repository.TrendingItemRepositoryImp
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.repository.TrendingItemRepository
-import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.DeleteAllTrendingRepositoriesUseCase
-import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.GetAllTrendingRepositoriesUseCase
-import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.InsertTrendingRepositoryUseCase
-import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.UseCases
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -100,7 +97,9 @@ object AppModule {
         return UseCases(
             DeleteAllTrendingRepositoriesUseCase(repository),
             GetAllTrendingRepositoriesUseCase(repository),
-            InsertTrendingRepositoryUseCase(repository)
+            InsertTrendingRepositoryUseCase(repository),
+            InsertAllTrendingRepositoryUseCase(repository),
+            DeleteTrendingRepositoryByIdUseCase(repository)
         )
     }
 }

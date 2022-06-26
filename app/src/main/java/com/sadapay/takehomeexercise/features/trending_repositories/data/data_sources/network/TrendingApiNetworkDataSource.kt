@@ -1,6 +1,6 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network
 
-import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.Item
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -10,7 +10,7 @@ class TrendingApiNetworkDataSource @Inject constructor(
     val trendingApiService: TrendingRepositoryAPIService,
 ) {
 
-    fun getTrendingRepositories(): Flow<Item> {
+    fun getTrendingRepositories(): Flow<List<TrendingItem>> {
         runBlocking {
             launch(Dispatchers.IO + SupervisorJob()) {
                 trendingApiService.getTrendingRepositories().apply {
@@ -22,6 +22,7 @@ class TrendingApiNetworkDataSource @Inject constructor(
                             /**
                              * Use Multithreading for each item parsing and saving
                              * */
+
                         }
                     } else {
                        /**

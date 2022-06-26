@@ -7,11 +7,15 @@ import androidx.room.Query
 import com.sadapay.app_utils.constants.AppConstants
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 @Dao
 interface TrendingRepositoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTrendingRepositoryItem(trendingItem: TrendingItem)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllRepositoryItem(list: List<TrendingItem>)
 
     @Query("SELECT * FROM ${AppConstants.TABLE_NAME}")
     fun getTrendingRepositories(): Flow<List<TrendingItem>>
@@ -20,5 +24,5 @@ interface TrendingRepositoryDao {
     suspend fun deleteAllTrendingRepositories()
 
     @Query("DELETE FROM ${AppConstants.TABLE_NAME} WHERE itemID =:id")
-    suspend fun deleteNoteByID(id: Int)
+    suspend fun deleteTrendingRepositoryByID(id: Int)
 }

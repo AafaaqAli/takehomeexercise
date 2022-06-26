@@ -3,14 +3,14 @@ package com.sadapay.takehomeexercise.features.trending_repositories.domain.useca
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.repository.TrendingItemRepository
 
-class InsertTrendingRepositoryUseCase(
+class InsertAllTrendingRepositoryUseCase(
     private val repository: TrendingItemRepository
 
 ) {
     /**
-     * Insert Into DB
+     * Insert all Into DB
      * */
-    fun execute(trendingItem: TrendingItem){
+    fun execute(list: List<TrendingItem>){
 
     }
 }
