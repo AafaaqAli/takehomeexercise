@@ -7,13 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.sadapay.app_utils.utils.network.NetworkUtils
+import com.sadapay.app_utils.utils.network.NetworkUtils.isNetworkConnected
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentNetworkErrorBinding
+import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment.ui_states.NetworkErrorFragmentUIState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -44,11 +50,18 @@ class NetworkErrorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[NetworkErrorViewModel::class.java]
+        binding.lifecycleOwner = this
 
         /**
          * Observing Ui state
          * */
+        binding.viewModel = this.viewModel
+
+        /**
+         * Ui state management
+         * */
         getStates()
+        disableBackPress()
     }
 
 
@@ -68,35 +81,47 @@ class NetworkErrorFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.networkErrorFragmentStateFlow.collect {
                 when (it) {
-                    is NetworkErrorFragmentUIState.NoInternet -> {
-                        /**
-                         * Items loading got failed due to some error
-                         * */
-                        Toast.makeText(context, it.networkError, Toast.LENGTH_SHORT).show()
-                    }
-
-                    is NetworkErrorFragmentUIState.Retry -> {
-                        /**
-                         * Items currently loading in recyclerview
-                         * */
-                    }
-
-
                     is NetworkErrorFragmentUIState.Empty -> {
                         /**
                          * Initial State where view-model is just got bound
                          * */
                     }
 
+                    is NetworkErrorFragmentUIState.NoInternet -> {
+                        /**
+                         * Items loading got failed due to some error
+                         * */
+                    }
+
+                    is NetworkErrorFragmentUIState.Retrying -> {
+                        /**
+                         * Items currently loading in recyclerview
+                         * */
+
+                    }
+
                     is NetworkErrorFragmentUIState.NetworkAvailable -> {
                         /**
                          * Network Available now can navigate to Main Fragment for loading
                          * */
-                        NavHostFragment.findNavController(this@NetworkErrorFragment)
-                            .navigate(R.id.action_networkErrorFragment_to_mainScreenFragment)
+                        if (viewModel.isNetworkAvailable()) {
+                            NavHostFragment.findNavController(this@NetworkErrorFragment).apply {
+                                this.navigate(R.id.action_networkErrorFragment_to_mainScreenFragment)
+                            }
+                        }
                     }
                 }
             }
+        }
+    }
+
+    /**
+     *
+     * Disable back-press un till internet is available
+     * */
+    private fun disableBackPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+
         }
     }
 }

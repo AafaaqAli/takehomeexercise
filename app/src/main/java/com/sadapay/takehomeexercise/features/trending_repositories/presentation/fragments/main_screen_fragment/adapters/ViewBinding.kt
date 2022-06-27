@@ -1,9 +1,6 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters
 
-import android.annotation.SuppressLint
-import android.app.PendingIntent.getActivity
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat

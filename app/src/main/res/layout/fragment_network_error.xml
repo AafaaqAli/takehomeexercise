@@ -74,7 +74,7 @@
             android:clickable="true"
             android:elevation="@dimen/_10sdp"
             android:focusable="true"
-            android:onClick="@{() -> viewModel.onRetryClicked()}"
+            android:onClick="@{()->viewModel.onRetryClicked()}"
             android:text="@string/retry"
             android:textColor="@color/color_green" />
     </RelativeLayout>

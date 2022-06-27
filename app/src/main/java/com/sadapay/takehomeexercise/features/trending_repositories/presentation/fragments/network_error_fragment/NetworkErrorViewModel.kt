@@ -15,14 +15,22 @@ import javax.inject.Inject
 class NetworkErrorViewModel @Inject constructor(
     private val application: Application
 ) : ViewModel() {
-    private val _state = MutableStateFlow<NetworkErrorFragmentUIState>(NetworkErrorFragmentUIState.Empty)
+    private val _state =
+        MutableStateFlow<NetworkErrorFragmentUIState>(NetworkErrorFragmentUIState.Empty)
     val networkErrorFragmentStateFlow: SharedFlow<NetworkErrorFragmentUIState> = _state
 
-    fun onRetryClicked(){
+    fun onRetryClicked() {
+        System.out.println("NetworkErrorClicked")
         if (application.isNetworkConnected() && NetworkUtils.internetIsConnected()) {
             _state.value = NetworkErrorFragmentUIState.NetworkAvailable
-        }else{
-            _state.value = NetworkErrorFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))
+        } else {
+            _state.value =
+                NetworkErrorFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))
         }
     }
+
+    fun isNetworkAvailable() =
+        application.isNetworkConnected() && NetworkUtils.internetIsConnected()
+
 }
+

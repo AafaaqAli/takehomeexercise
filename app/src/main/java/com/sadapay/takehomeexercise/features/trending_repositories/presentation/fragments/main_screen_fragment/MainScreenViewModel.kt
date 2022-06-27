@@ -1,7 +1,6 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment
 
 import android.app.Application
-import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel

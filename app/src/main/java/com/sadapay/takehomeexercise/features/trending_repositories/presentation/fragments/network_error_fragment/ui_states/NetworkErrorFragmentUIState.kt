@@ -3,6 +3,6 @@ package com.sadapay.takehomeexercise.features.trending_repositories.presentation
 sealed class NetworkErrorFragmentUIState{
     data class NoInternet(val networkError: String) : NetworkErrorFragmentUIState()
     object Empty : NetworkErrorFragmentUIState()
-    object Retry: NetworkErrorFragmentUIState()
+    object Retrying: NetworkErrorFragmentUIState()
     object NetworkAvailable: NetworkErrorFragmentUIState()
 }
