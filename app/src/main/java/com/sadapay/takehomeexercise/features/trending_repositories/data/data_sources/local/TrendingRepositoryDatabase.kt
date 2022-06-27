@@ -7,9 +7,10 @@ import com.sadapay.takehomeexercise.features.trending_repositories.domain.models
 
 
 @Database(
+    entities = [TrendingItem::class],
     version = AppConstants.DATABASE_VERSION,
-    entities = [TrendingItem::class]
+    exportSchema = false
 )
-abstract class TrendingRepositoryDatabase: RoomDatabase() {
+abstract class TrendingRepositoryDatabase : RoomDatabase() {
     abstract val trendingRepositoryDao: TrendingRepositoryDao
 }

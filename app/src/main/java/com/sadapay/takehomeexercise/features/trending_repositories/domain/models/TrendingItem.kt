@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class TrendingItem(
-
     @PrimaryKey
     var itemID: Int,
     var repositoryStars: Int,

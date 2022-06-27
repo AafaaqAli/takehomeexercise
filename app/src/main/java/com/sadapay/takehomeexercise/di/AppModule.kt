@@ -14,7 +14,6 @@ import com.sadapay.app_utils.constants.AppConstants
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.local.TrendingRepositoryDao
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.local.TrendingRepositoryDatabase
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingApiNetworkDataSource
-import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingRepositoryAPIService
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.repository.TrendingItemRepositoryImp
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.repository.TrendingItemRepository
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.*
@@ -89,7 +88,7 @@ object AppModule {
         trendingApiNetworkDataSource: TrendingApiNetworkDataSource,
         trendingRepositoryDao: TrendingRepositoryDao
     ): TrendingItemRepository =
-        TrendingItemRepositoryImp(trendingApiNetworkDataSource, trendingRepositoryDao)
+        TrendingItemRepositoryImp(trendingApiNetworkDataSource /*, trendingRepositoryDao*/)
 
     @Provides
     @Singleton

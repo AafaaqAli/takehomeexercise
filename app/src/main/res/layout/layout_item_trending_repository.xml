@@ -120,7 +120,7 @@
                     android:drawablePadding="8dp"
                     android:text="@{viewModel.getLanguage(position)}"
                     android:textSize="@dimen/_10sdp"
-                    app:drawableStartCompat="@drawable/language_drawable" />
+                    bind:drawableRight="@{viewModel.getLanguageColor(position)}"/>
 
                 <TextView
                     android:id="@+id/text_view_total_stars"

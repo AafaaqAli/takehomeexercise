@@ -60,7 +60,7 @@ class MainScreenFragment : Fragment() {
          * RecyclerView
          * */
         binding.viewModel = this.viewModel
-        viewModel.populateRecyclerView()
+        viewModel.fetchTrendingRepositories()
     }
 
     /**

@@ -1,24 +1,32 @@
 package com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment
 
 import android.app.Application
+import android.graphics.Color
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
 import com.sadapay.app_utils.utils.network.NetworkUtils
 import com.sadapay.app_utils.utils.network.NetworkUtils.isNetworkConnected
 import com.sadapay.takehomeexercise.R
+import com.sadapay.takehomeexercise.features.trending_repositories.data.utils.NetworkApiCallStatus
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.usecases.UseCases
+import com.sadapay.takehomeexercise.features.trending_repositories.domain.utils.LanguageColorParser
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters.TrendingItemsDiffUtil
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters.TrendingRepositoriesAdapter
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val application: Application
+    private val application: Application,
+    private val useCases: UseCases
 ) : ViewModel() {
     private val _state = MutableStateFlow<MainFragmentUIState>(MainFragmentUIState.Empty)
 
@@ -31,179 +39,6 @@ class MainScreenViewModel @Inject constructor(
 
     init {
         recyclerViewAdapter.setRecyclerViewViewModel(this)
-    }
-
-    @OptIn(DelicateCoroutinesApi::class)
-    fun populateRecyclerView() = GlobalScope.launch {
-        /**
-         * TODO: Remove on implementing data sources, Mocking the loading state,
-         * */
-        _state.value = MainFragmentUIState.Loading
-
-        val arrayListOfItems: ArrayList<TrendingItem> = arrayListOf()
-        arrayListOfItems.add(
-            TrendingItem(
-                1,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/110/200/300",
-                "Random 1",
-                "SadapayTakeHomeExercise1",
-                "1-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                2,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/180/200/300",
-                "Random 2",
-                "SadapayTakeHomeExercise2",
-                "2-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                3,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/154/200/300",
-                "Random 3",
-                "SadapayTakeHomeExercise3",
-                "3-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                4,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/1049/200/300",
-                "Random 4",
-                "SadapayTakeHomeExercise4",
-                "4-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                5,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/1054/200/300",
-                "Random 5",
-                "SadapayTakeHomeExercise5",
-                "5-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                6,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/1069/200/300",
-                "Random 6",
-                "SadapayTakeHomeExercise6",
-                "6-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                7,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/1074/200/300",
-                "Random 7",
-                "SadapayTakeHomeExercise7",
-                "7-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                8,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/117/200/300",
-                "Random 8",
-                "SadapayTakeHomeExercise8",
-                "8-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                9,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/152/200/300",
-                "Random 9",
-                "SadapayTakeHomeExercise9",
-                "9-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        arrayListOfItems.add(
-            TrendingItem(
-                10,
-                500,
-                20,
-                false,
-                "https://picsum.photos/id/177/200/300",
-                "Random 10",
-                "SadapayTakeHomeExercise10",
-                "10-The remake of the https://github.com/aafaqali/sadapayexercise/ in accordance to latest technologies",
-                "Python",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300"
-            )
-        )
-
-        setTrendingItemList(arrayListOfItems)
-        delay(3000)
-        _state.value = MainFragmentUIState.LoadSuccess
     }
 
     fun fetchTrendingRepositories() {
@@ -235,11 +70,50 @@ class MainScreenViewModel @Inject constructor(
             /**
              * Check sync status & get data accordingly
              * */
+            viewModelScope.launch {
+                useCases.getAllTrendingRepositories
+                    .execute().onStart {
+                        /**
+                         * Set state to loading e.g start shimmer/refresh layout through MainFragmentUIStateHelper
+                         * */
+                        _state.value =
+                            MainFragmentUIState.Loading
+                    }.catch { exception ->
+                        /**
+                         * there's some error show the toast
+                         * */
+                        _state.value =
+                            MainFragmentUIState.LoadingError("Exception: " + exception.message.toString())
+                    }.collect { response ->
+                        when (response) {
+                            is NetworkApiCallStatus.SUCCESS -> {
+                                /**
+                                 * Response is successful, show items, and save them in room
+                                 * */
+                                _state.value =
+                                    MainFragmentUIState.LoadSuccess
+                                setTrendingItemList(response.data!!)
+                            }
+
+                            is NetworkApiCallStatus.ERROR -> {
+                                /**
+                                 * Response is unsuccessful, show items if already stored else take user to network error fragment
+                                 * */
+                                _state.value =
+                                    MainFragmentUIState.LoadingError("ERROR: " + response.message.toString())
+                            }
+                        }
+                    }
+            }
         } else {
             _state.value =
                 MainFragmentUIState.NoInternet(application.getString(R.string.ERROR_MESSAGE_NETWORK_CHECK))
 
         }
+    }
+
+    fun getLanguageColor(position: Int): String {
+        return LanguageColorParser.langColor(application, getLanguage(position))
     }
 
     private fun setTrendingItemList(newTrendingItems: List<TrendingItem>) {
@@ -251,6 +125,7 @@ class MainScreenViewModel @Inject constructor(
         diffResult.dispatchUpdatesTo(recyclerViewAdapter)
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun setIsExpanded(position: Int, expansion: Boolean) {
         newTrendingItems[position].isItemExpanded = expansion
         recyclerViewAdapter.notifyItemChanged(position)
@@ -260,7 +135,9 @@ class MainScreenViewModel @Inject constructor(
     fun getTrendingItems(): List<TrendingItem?> = this.oldTrendingItems
     fun getIsExpanded(position: Int) = oldTrendingItems[position].isItemExpanded
     fun getTitleUserName(position: Int) = oldTrendingItems[position].itemHeadingUserName
-    fun getRepositoryName(position: Int) = oldTrendingItems[position].itemSubHeadingRepositoryName
+    fun getRepositoryName(position: Int) =
+        oldTrendingItems[position].itemSubHeadingRepositoryName
+
     fun getDescription(position: Int) = oldTrendingItems[position].itemDescription
     fun getGetAvatarLink(position: Int) = oldTrendingItems[position].avatarURL
     fun getLanguage(position: Int) = oldTrendingItems[position].repositoryLanguage
