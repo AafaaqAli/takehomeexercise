@@ -33,4 +33,8 @@ class MainActivity : AppCompatActivity() {
             NetworkRibbonAnimationHelper.animateRibbon(binding, isNetworkAvailable)
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

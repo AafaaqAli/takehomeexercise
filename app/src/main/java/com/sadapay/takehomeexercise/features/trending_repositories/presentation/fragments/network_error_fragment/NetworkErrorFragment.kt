@@ -6,20 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
-import com.sadapay.app_utils.utils.network.NetworkUtils
-import com.sadapay.app_utils.utils.network.NetworkUtils.isNetworkConnected
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.databinding.FragmentNetworkErrorBinding
-import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.MainScreenViewModel
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.network_error_fragment.ui_states.NetworkErrorFragmentUIState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -61,7 +55,7 @@ class NetworkErrorFragment : Fragment() {
          * Ui state management
          * */
         getStates()
-        disableBackPress()
+        manageBackPress()
     }
 
 
@@ -119,7 +113,7 @@ class NetworkErrorFragment : Fragment() {
      *
      * Disable back-press un till internet is available
      * */
-    private fun disableBackPress() {
+    private fun manageBackPress() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
 
         }

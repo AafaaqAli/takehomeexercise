@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -76,7 +77,6 @@ class MainScreenFragment : Fragment() {
      * */
     @OptIn(DelicateCoroutinesApi::class)
     private fun getStates() {
-        var isFragmentLoaded = false
         /**
          * Should Start listening the state onResume
          * */
@@ -88,11 +88,8 @@ class MainScreenFragment : Fragment() {
                          * Items loading got failed due to some error
                          * */
                         binding.mainScreenLayoutSwipeToRefresh.isRefreshing = false
-                        if (!isFragmentLoaded) {
-                            NavHostFragment.findNavController(this@MainScreenFragment)
-                                .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment)
-                            isFragmentLoaded = true
-                        }
+                        NavHostFragment.findNavController(this@MainScreenFragment)
+                            .navigate(R.id.action_mainScreenFragment_to_networkErrorFragment)
                     }
 
                     is MainFragmentUIState.LoadingError -> {
