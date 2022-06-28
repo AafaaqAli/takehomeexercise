@@ -2,25 +2,26 @@ package com.sadapay.app_utils.utils.preference_datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
 class PreferenceDataStoreOperations @Inject constructor(
     private val preferenceDataStore: DataStore<Preferences>,
 ) {
-
     /**
      * DO NOT CLEAR PREFERENCE UNTIL, NEED TO FLUSH ENTIRE APP'S DATA, OR RESET SYNC TIME
      * */
-    suspend fun clearAllPreference() {
+    private suspend fun clearAllPreference() {
         preferenceDataStore.edit { preferences ->
             preferences.clear()
         }
     }
 
-    suspend fun String.resetSyncTime(){
-        val dataStoreKey = intPreferencesKey(this)
+    suspend fun resetSyncTime(preferenceName: String){
+        val dataStoreKey = intPreferencesKey(preferenceName)
         preferenceDataStore.edit { preferences ->
             preferences.remove(dataStoreKey)
         }
@@ -28,48 +29,43 @@ class PreferenceDataStoreOperations @Inject constructor(
 
 
     /**
-     * Save & Get String
+     * Save String
      * */
-    suspend fun String.saveDataStorePreference(key: String){
+    suspend fun saveDataStorePreference(key: String, value: String){
         val dataStoreKey = stringPreferencesKey(key)
         preferenceDataStore.edit { appPreference ->
-            appPreference[dataStoreKey] = this
+            appPreference[dataStoreKey] = value
         }
     }
 
-    suspend fun String.getDataStorePreference(): String?{
-        val dataStoreKey = stringPreferencesKey(this)
-        val preferences = preferenceDataStore.data.first()
-        return preferences[dataStoreKey]
-    }
 
     /**
      * Save Boolean
      * */
-    suspend fun Boolean.saveDataStorePreference(key: String){
+    suspend fun saveDataStorePreference(key: String, value: Boolean){
         val dataStoreKey = booleanPreferencesKey(key)
         preferenceDataStore.edit { appPreference ->
-            appPreference[dataStoreKey] = this
+            appPreference[dataStoreKey] = value
         }
     }
 
     /**
      * Save Int
      * */
-    suspend fun Int.saveDataStorePreference(key: String){
+    suspend fun saveDataStorePreference(key: String, value: Int){
         val dataStoreKey = intPreferencesKey(key)
         preferenceDataStore.edit { appPreference ->
-            appPreference[dataStoreKey] = this
+            appPreference[dataStoreKey] = value
         }
     }
 
     /**
      * Save Long
      * */
-    suspend fun Long.saveDataStorePreference(key: String){
+    suspend fun saveDataStorePreference(key: String, value: Long) {
         val dataStoreKey = longPreferencesKey(key)
         preferenceDataStore.edit { appPreference ->
-            appPreference[dataStoreKey] = this
+            appPreference[dataStoreKey] = value
         }
     }
 }

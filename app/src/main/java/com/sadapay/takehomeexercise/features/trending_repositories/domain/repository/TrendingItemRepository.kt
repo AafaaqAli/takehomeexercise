@@ -14,7 +14,6 @@ interface TrendingItemRepository {
      * Local - RoomDB
      * */
     fun getTrendingRepositoriesFromLocal(): Flow<List<TrendingItem>>
-    suspend fun deleteRepositoryByID(id: Int)
     suspend fun deleteAllRepositories()
     suspend fun saveAllRepositories(list: List<TrendingItem>)
     suspend fun saveRepository(trendingItem: TrendingItem)

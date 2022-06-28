@@ -2,8 +2,9 @@ package com.sadapay.takehomeexercise.features.trending_repositories.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.sadapay.app_utils.constants.AppConstants
 
-@Entity
+@Entity(tableName = AppConstants.TABLE_NAME)
 data class TrendingItem(
     @PrimaryKey
     var itemID: Int,

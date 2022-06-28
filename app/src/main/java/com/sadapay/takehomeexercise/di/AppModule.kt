@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.sadapay.app_utils.constants.AppConstants
+import com.sadapay.app_utils.utils.preference_datastore.PreferenceDataStoreOperations
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.local.TrendingRepositoryDao
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.local.TrendingRepositoryDatabase
 import com.sadapay.takehomeexercise.features.trending_repositories.data.data_sources.network.TrendingApiNetworkDataSource
@@ -63,6 +64,15 @@ object AppModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun providesDataStoreOperations(preferenceDataStore: DataStore<Preferences>,) = PreferenceDataStoreOperations(preferenceDataStore)
+
+
+    @Provides
+    @Singleton
+    fun providesSharedPreference(@ApplicationContext appContext: Context) = appContext.getSharedPreferences(AppConstants.APP_PREFERENCES_NAME, Context.MODE_PRIVATE)
+
 
     /**
      * Room Specific dependencies
@@ -88,17 +98,17 @@ object AppModule {
         trendingApiNetworkDataSource: TrendingApiNetworkDataSource,
         trendingRepositoryDao: TrendingRepositoryDao
     ): TrendingItemRepository =
-        TrendingItemRepositoryImp(trendingApiNetworkDataSource /*, trendingRepositoryDao*/)
+        TrendingItemRepositoryImp(trendingApiNetworkDataSource, trendingRepositoryDao)
 
     @Provides
     @Singleton
     fun providesNoteUseCases(repository: TrendingItemRepository): UseCases {
         return UseCases(
+            GetAllRemoteTrendingRepositoriesUseCase(repository),
             DeleteAllTrendingRepositoriesUseCase(repository),
             GetAllTrendingRepositoriesUseCase(repository),
             InsertTrendingRepositoryUseCase(repository),
-            InsertAllTrendingRepositoryUseCase(repository),
-            DeleteTrendingRepositoryByIdUseCase(repository)
+            InsertAllTrendingRepositoryUseCase(repository)
         )
     }
 }
