@@ -79,7 +79,7 @@ object AppModule {
      * */
     @Provides
     @Singleton
-    fun providesNoteDatabase(application: Application): TrendingRepositoryDatabase {
+    fun providesTrendingRepositoryDatabase(application: Application): TrendingRepositoryDatabase {
         return Room.databaseBuilder(
             application,
             TrendingRepositoryDatabase::class.java,
@@ -89,7 +89,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesNoteDao(trendingRepositoryDatabase: TrendingRepositoryDatabase): TrendingRepositoryDao =
+    fun providesTrendingRepositoryDao(trendingRepositoryDatabase: TrendingRepositoryDatabase): TrendingRepositoryDao =
         trendingRepositoryDatabase.trendingRepositoryDao
 
     @Provides
@@ -102,7 +102,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesNoteUseCases(repository: TrendingItemRepository): UseCases {
+    fun providesTrendingRepositoryUseCases(repository: TrendingItemRepository): UseCases {
         return UseCases(
             GetAllRemoteTrendingRepositoriesUseCase(repository),
             DeleteAllTrendingRepositoriesUseCase(repository),
