@@ -70,7 +70,7 @@
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:fontFamily="sans-serif"
                 android:text="@{viewModel.getTitleUserName(position)}"
-                android:textColor="@color/color_light_grey"
+                app:titleTextColor="?attr/textcolor"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
                 android:fontFamily="@font/vega_sb_bold"
                 android:scrollbars="vertical"
                 android:text="@{viewModel.getRepositoryName(position)}"
-                android:textColor="@color/color_warm_grey"
+                app:titleTextColor="?attr/textcolor"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                 android:fontFamily="sans-serif"
                 android:scrollbars="vertical"
                 android:text="@{viewModel.getDescription(position)}"
-                android:textColor="@color/color_warm_grey"
+                app:titleTextColor="?attr/textcolor"
                 android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
                 android:visibility="@{viewModel.getIsExpanded(position) ? View.VISIBLE: View.GONE}" />

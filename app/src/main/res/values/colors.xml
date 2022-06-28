@@ -17,8 +17,10 @@
     <color name="shimmerColor">#D3D3D3</color>
     <color name="color_green">#7AB17B</color>
 
-    <!--TODO dark theme colors-->
-    <!--TODO light theme colors-->
+    <color name="colorPrimaryDarkMode">#212121</color>
+    <color name="colorPrimaryDarkNight">#000000</color>
+    <color name="toolBarBackgroundColor">#212121</color>
+
 
 
 </resources>

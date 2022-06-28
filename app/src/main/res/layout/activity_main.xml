@@ -19,6 +19,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ToolbarTheme"
                 app:menu="@menu/menu_appbar"
+                app:titleTextColor="?attr/textcolor"
+                app:popupTheme="@style/Sadapay.PopupOverlay"
                 app:title="@string/page_title_trending"
                 app:titleCentered="true" />
         </com.google.android.material.appbar.AppBarLayout>

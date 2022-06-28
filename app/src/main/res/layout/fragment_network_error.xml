@@ -45,7 +45,7 @@
                 android:fontFamily="@font/vega_sb_medium"
                 android:text="@string/something_went_wrong"
                 android:textAlignment="center"
-                android:textColor="@color/color_warm_grey"
+                app:titleTextColor="?attr/textcolor"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
                 android:fontFamily="@font/vega_sb_medium"
                 android:text="@string/an_alien_is_probably_blocking_your_signal"
                 android:textAlignment="center"
-                android:textColor="@color/color_light_grey"
+                app:titleTextColor="?attr/textcolor"
                 android:textSize="@dimen/_12ssp" />
 
         </LinearLayout>
