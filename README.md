@@ -1,19 +1,12 @@
 
-# Sadapay TakeHomeExercise
 
-The SadaPay team has given a simple exercise to analyze a candidate to fulfill a potential job vacancy by a talented Android Software Engineer.
-
-For that purpose, this application has been engineered on the latest and greatest technologies and market trends followed internationally,
-
-This application heavily demonstrates [Clean-Code-Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and [MAD Skills](https://developer.android.com/series/mad-skills), and is highly expandable for future implementations.
-
-## Versions
-- [Android Studio Chipmunk | 2021.2.1]()
-- [Gradle 7.3.3]()
-- [CompileSDK 32]()
-- [MinimumSDK 21]()
-- [TargetSDK 32]()
-
+## Working
+This exercise demonstrates caching feature using RoomDB which is populated through API call only occur only
+response when the application first launches or lastSyncTime is greater than 6 Hours.
+### Ideal Implentation
+Approach where I could have created a relay Server
+which should have a recursive cron job that saves the response from GithubAPI and updates the data
+every 3 hours, though which all of the users might have no limitations on API calls
 
 ## Architecture Patterns
 - [Clean Code Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
@@ -49,10 +42,9 @@ This application heavily demonstrates [Clean-Code-Architecture](https://blog.cle
 - [Navigation Component](https://developer.android.com/jetpack/androidx/releases/navigation)
 
 
-
-## 🛠 Skills
-- [Hardwork](https://github.com/AafaaqAli)
-- [Kotlin](https://kotlinlang.org/)
-- [Groovy](https://groovy-lang.org/)
-- [XML](https://www.w3schools.com/xml/xml_whatis.asp)
-
+## Versions
+- [Android Studio Chipmunk | 2021.2.1]()
+- [Gradle 7.3.3]()
+- [CompileSDK 32]()
+- [MinimumSDK 21]()
+- [TargetSDK 32]()
