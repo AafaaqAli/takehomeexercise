@@ -5,5 +5,5 @@ import com.sadapay.app_utils.constants.AppConstants
 fun Long.isSyncTime(lastUpdatedTime: Long): Boolean{
     val currentTime = (this / AppConstants.ONE_SECONDS_IN_MILLS) / (AppConstants.MINUTE) / (AppConstants.HOUR)
     val lastSyncTime =  (lastUpdatedTime / AppConstants.ONE_SECONDS_IN_MILLS) / (AppConstants.MINUTE) / (AppConstants.HOUR)
-    return (lastSyncTime - currentTime) < AppConstants.HOUR
+    return (lastSyncTime - currentTime) < AppConstants.SYNC_TIME_IN_HOURS
 }

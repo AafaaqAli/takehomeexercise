@@ -30,9 +30,9 @@ object AppConstants {
     /**
      * Sync time to see if time has been spent or not
      * */
-    const val SYNC_TIME_IN_HOURS: Int = 24
+    const val SYNC_TIME_IN_HOURS: Int = 4
     const val ONE_SECONDS_IN_MILLS: Int = 1000
     const val HOUR: Int = 60
     const val MINUTE: Int = 60
-    const val DAY: Int = 24
+    const val DAY: Int = 30
 }
