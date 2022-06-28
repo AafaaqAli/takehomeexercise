@@ -4,8 +4,6 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +11,6 @@ import com.sadapay.app_utils.constants.AppConstants
 import com.sadapay.app_utils.utils.date_time.isSyncTime
 import com.sadapay.app_utils.utils.network.NetworkUtils
 import com.sadapay.app_utils.utils.network.NetworkUtils.isNetworkConnected
-import com.sadapay.app_utils.utils.preference_datastore.PreferenceDataStoreOperations
 import com.sadapay.takehomeexercise.R
 import com.sadapay.takehomeexercise.features.trending_repositories.data.utils.NetworkApiCallStatus
 import com.sadapay.takehomeexercise.features.trending_repositories.domain.models.TrendingItem
@@ -23,9 +20,6 @@ import com.sadapay.takehomeexercise.features.trending_repositories.presentation.
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.adapters.TrendingRepositoriesAdapter
 import com.sadapay.takehomeexercise.features.trending_repositories.presentation.fragments.main_screen_fragment.ui_states.MainFragmentUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
