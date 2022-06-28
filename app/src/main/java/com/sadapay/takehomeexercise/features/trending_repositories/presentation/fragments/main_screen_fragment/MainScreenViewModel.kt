@@ -124,16 +124,18 @@ class MainScreenViewModel @Inject constructor(
                         System.currentTimeMillis()
                     )
                     if (System.currentTimeMillis().isSyncTime(lastSyncedTime)) {
-                        GlobalScope.launch (Dispatchers.IO){
-                           val isLoaded = useCases.getAllTrendingRepositories.execute().collect { dbItems ->
-                                setTrendingItemList(dbItems)
+                        useCases.getAllTrendingRepositories.execute().collect { dbItems ->
+                            setTrendingItemList(dbItems).also {
+                                _state.value =
+                                    MainFragmentUIState.LoadSuccess
                             }
                         }
                     } else {
-                        setTrendingItemList(it)
+                        setTrendingItemList(it).also {
+                            _state.value =
+                                MainFragmentUIState.LoadSuccess
+                        }
                     }
-                    _state.value =
-                        MainFragmentUIState.LoadSuccess
                 }
             }
 
